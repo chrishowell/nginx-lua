@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  reverse:
+    hostname: reverse
+    image: danday74/nginx-lua
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx-conf:/nginx/conf
+
+  hub:
+    hostname: hub
+    image: pingwhat
+    ports:
+      - 80
+    environment:
+      - PONG_RESPONSE=hub-pong
+
+  sms-fe:
+    hostname: sms-fe
+    image: pingwhat
+    ports:
+      - 80
+    environment:
+      - PONG_RESPONSE=sms-fe-pong
